@@ -1,18 +1,36 @@
 <template>
   <div class="hello">
     오늘 해야 할 일
-    {{ toDoItems }}
+    <ul v-if="toDoItems && toDoItems.length">
+      <li v-for="toDoItem of toDoItems">
+        {{ toDoItem.title }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+const axios = require('axios')
+
 export default {
   name: 'hello',
   data: () => {
     return {
-      toDoItems: ['1. 옷 정리', '2. 모니터 포장']
+      toDoItems: [],
+      data: []
     }
+  },
+  created () {
+    axios
+      .get('http://localhost:3000/todo/')
+      .then((response) => {
+        this.toDoItems = response.data.data
+      })
+      .catch((e) => {
+        console.log('error : ', e)
+      })
   }
+
 }
 </script>
 
