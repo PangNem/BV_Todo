@@ -1,6 +1,6 @@
-# Vue_Todo
+# BV_Todo
 
-> Vue Todo List
+> BV Todo List
 
 ## Build Setup
 
